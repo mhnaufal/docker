@@ -11,4 +11,6 @@ COPY script.py script.py
 
 EXPOSE 80
 
-CMD [ "python", "script.py" ]
+ENTRYPOINT [ "python" ]
+
+CMD [ "script.py" ]
