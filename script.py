@@ -2,15 +2,19 @@ from flask import Flask, request
 
 app = Flask(__name__)
 
-ip_req_count = 0
+ips_list = {}
 
 @app.route('/')
 def count_ip_requests():
-    global ip_req_count
     ip_addr = request.remote_addr
-    ip_req_count = ip_req_count + 1
 
-    result = "IP address: " + str(ip_addr) + " | Request count: " + str(ip_req_count)
+    # find existing IP in hashmap
+    if str(ip_addr) in ips_list:
+        ips_list[str(ip_addr)] = ips_list[str(ip_addr)] + 1
+    else:
+        ips_list[str(ip_addr)] = 1
+
+    result = "IP address: " + str(ip_addr) + " | Request count: " + str(ips_list[str(ip_addr)])
 
     return result
 
