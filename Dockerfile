@@ -1,5 +1,14 @@
-FROM alpine:latest
+FROM python:3.8.14-alpine3.16
 
-ENV TARGET_IP=$TARGET_IP
+WORKDIR /app
 
-CMD [ "curl", "TARGET_IP" ]
+COPY requirements.txt .
+
+RUN pip3 install --upgrade pip && \
+    pip3 install --user --no-cache -r requirements.txt
+
+COPY script.py script.py
+
+EXPOSE 80
+
+CMD [ "python", "script.py" ]

@@ -3,11 +3,11 @@
 ## Installation
 
 ```docker
-docker build -t curl:latest .
+docker build -t server-req:latest .
 ```
 
 ## Run
 
 ```docker
-docker run curl:latest --rm -e TARGET_IP=<your-target-ip>
+docker run server-req:latest -it --rm
 ```
